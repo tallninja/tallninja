@@ -1,8 +1,8 @@
 # Visit https://github.com/lowlighter/metrics/blob/master/action.yml for full reference
 name: Metrics
 on:
-  # Schedule updates (At every minute past every 12th hour.)
-  schedule: [{cron: "* */12 * * *"}]
+  # Schedule updates (each hour)
+  schedule: [{cron: "0 * * * *"}]
   # Lines below let you run workflow manually and on each commit
   workflow_dispatch:
   push: {branches: ["master", "main"]}
@@ -23,32 +23,14 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
 
           # Options
+          # Options
           user: tallninja
           template: classic
-          base: header, activity, community, repositories, metadata
+          base: header, activity, metadata, repositories, community
+          plugin_lines: yes
+          plugin_stargazers: yes
           config_timezone: Africa/Nairobi
-          plugin_achievements: yes
-          plugin_achievements_display: compact
-          plugin_achievements_secrets: yes
-          plugin_achievements_threshold: C
-          plugin_followup: yes
-          plugin_followup_sections: repositories
+          plugin_introduction: yes
           plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year
+          plugin_isocalendar_duration: full-year
           plugin_languages: yes
-          plugin_languages_analysis_timeout: 15
-          plugin_languages_categories: markup, programming
-          plugin_languages_colors: github
-          plugin_languages_limit: 8
-          plugin_languages_recent_categories: markup, programming
-          plugin_languages_recent_days: 14
-          plugin_languages_recent_load: 300
-          plugin_languages_sections: most-used
-          plugin_languages_threshold: 0%
-          plugin_projects: yes
-          plugin_projects_limit: 4
-          plugin_repositories: yes
-          plugin_repositories_affiliations: owner
-          plugin_repositories_batch: 100
-          plugin_stars: yes
-          plugin_stars_limit: 4
